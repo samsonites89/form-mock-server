@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission Demo 2</title>
+</head>
+<body>
+
+<div class="container">
+    <div> 2 </div>
+    <img src="../../img/Squirtle.png" alt="Girl in a jacket" width="500" height="600">
+    <h3>Form Submission Demo</h3>
+    <p>Click a button to pass a message</p>
+    <button id="submitBtn" onclick="submitFunction()">Submit</button>
+    <button id="errorBtn" onclick="errorFunction()">Error</button>
+    <button id="cancelBtn" onclick="cancelFunction()">Cancel</button>
+</div>
+
+<script>
+
+    
+function submitFunction() {
+    window.postMessage("{\"type\":\"form_complete\",\"signature\":\"test_ksdjf0\",\"data\":{\"smart_action_id\":1,\"status\":\"success\",\"timestamp\":\"2023-10-01T10:00:00Z\"}}");
+}
+
+function errorFunction() {
+    window.postMessage("{\"type\":\"form_complete\",\"signature\":\"test_ksdjf0\",\"data\":{\"status\":\"error\",\"smart_action_id\":1,\"details\":{\"error_code\":\"404\",\"message\":\"Form submission failed due to validation errors.\"},\"timestamp\":\"2023-10-01T10:05:00Z\"}}");
+}
+
+function cancelFunction() {
+    window.postMessage("{\"type\":\"form_complete\",\"signature\":\"test_ksdjf0\",\"data\":{\"status\":\"cancelled\",\"smart_action_id\":1,\"details\":{\"message\":\"User cancelled the form submission.\"},\"timestamp\":\"2023-10-01T10:05:00Z\"}}");
+}
+</script>
+
+</body>
+</html>

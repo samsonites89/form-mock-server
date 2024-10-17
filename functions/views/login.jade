@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  h1 Mock Form
+  p Please type in your email address to continue
+  input(id='email',type="text", name="email-input", placeholder="enter your email")
+
+  button(onclick='submit()') Submit
+
+  script.
+    const emailInput = document.getElementById('email')
+    emailInput.addEventListener('keypress', (e) => handleKeyPress(e.key))
+
+    function submit() {
+      const emailInput = document.getElementById('email')
+
+      $.ajax({
+        url: "/login/setEmail",
+        method: "POST",
+        data: { "email": emailInput.value },
+        dataType: 'json',
+        success: function(data) {
+          console.log(data)
+          //- window.location.replace("http://www.w3schools.com");
+        },
+        error: function(data) {
+          console.log("error")
+          console.log(data)
+        }
+      }); 
+    }
+
+    function handleKeyPress(key) {
+      if(key === 'Enter' || key ==='enter') {
+        submit()
+      }
+    }
+
+
+
+
+ 

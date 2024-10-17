@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1 shared secret
+  div
+
+  input(id='secret',type='text',value=`${config.shared_secret}`,placeholder='',name='secret')
+  button(onclick='submit()') Submit
+
+  script.
+
+    function submit() {
+      const secret = document.getElementById('secret')
+
+      $.ajax({
+        url: "/configs",
+        method: "POST",
+        data: { "secret": secret.value },
+        dataType: 'json',
+        success: function(data) {
+          console.log(data)
+          //- window.location.replace("http://www.w3schools.com");
+        },
+        error: function(data) {
+          console.log("error")
+          console.log(data)
+        }
+      }); 
+    }
